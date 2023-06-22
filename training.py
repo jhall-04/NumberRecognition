@@ -2,8 +2,6 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from keras import layers
 
-IMG_HGT, IMG_WTH = 28, 28
-
 # Load set of handwritten letters from MNIST
 (train_img, train_lbl), (test_img, test_lbl) = tf.keras.datasets.mnist.load_data()
 
@@ -34,15 +32,14 @@ model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentro
 
 # Training hyperparameters
 bucket_size = 25
-num_epochs = 1
-
+num_epochs = 10
 
 # Train model using dataset
 hist = model.fit(train_img, train_lbl, batch_size=bucket_size, epochs=num_epochs, validation_data=(test_img, test_lbl))
 # Check loss and accuracy
 test_loss, test_accuracy = model.evaluate(test_img, test_lbl)
 
+# Save model and output final loss and accuracy
 model.save('number_model.h5', hist)
 print(test_loss, test_accuracy)
-
 print('Done :)')
