@@ -31,8 +31,8 @@ model.add(layers.Dense(units=10))
 model.compile(optimizer='adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics='accuracy')
 
 # Training hyperparameters
-bucket_size = 25
-num_epochs = 10
+bucket_size = 600
+num_epochs = 5
 
 # Train model using dataset
 hist = model.fit(train_img, train_lbl, batch_size=bucket_size, epochs=num_epochs, validation_data=(test_img, test_lbl))
